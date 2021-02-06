@@ -81,6 +81,12 @@ class LinkedList:
         new_node.next = self.head.next
         self.head.next = new_node
 
+    def add_back(self, value: object) -> None:
+        """Adds a node to the back of the list"""
+        new_node = SLNode(value)
+        current = self.head
+        self.add_back_helper(new_node, current)
+
     def add_back_helper(self, new_node, current):
         """Helper function keeps track of current node"""
         if current.next == self.tail:
@@ -90,35 +96,50 @@ class LinkedList:
         current = current.next
         self.add_back_helper(new_node, current)
 
-    def add_back(self, value: object) -> None:
-        """Adds a node to the back of the list"""
-        new_node = SLNode(value)
-        if self.head.next == self.tail:
-            self.head.next = new_node
-            new_node.next = self.tail
+    def insert_helper(self, count, index, current, new_node):
+        """Helper function to keep track of current node and value"""
+        if count == index:
+            after = current.next
+            current.next = new_node
+            new_node.next = after
             return
-        current = self.head
-
-        self.add_back_helper(new_node, current)
-
+        current = current.next
+        count += 1
+        self.insert_helper(count, index, current, new_node)
 
     def insert_at_index(self, index: int, value: object) -> None:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Inserts a value at an index in the linked list"""
+        if index < 0 or index > self.length():
+            raise SLLException
+        new_node = SLNode(value)
+        count = 0
+        current = self.head
+        self.insert_helper(count, index, current, new_node)
+
 
     def remove_front(self) -> None:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Removes the first node from the list"""
+        if self.length() <= 0:
+            raise SLLException
+
+        self.head.next = self.head.next.next
 
     def remove_back(self) -> None:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Removes the last node from the list"""
+        if self.length() <= 0:
+            raise SLLException
+
+        current = self.head
+        self.remove_back_helper(current)
+
+
+    def remove_back_helper(self, current):
+        """Helps go through the list to remove the last node"""
+        if current.next.next == self.tail:
+            current.next = self.tail
+            return
+        current = current.next
+        self.remove_back_helper(current)
 
     def remove_at_index(self, index: int) -> None:
         """
@@ -158,7 +179,7 @@ class LinkedList:
 
 
 if __name__ == '__main__':
-    pass
+    # pass
 
     # print('\n# add_front example 1')
     # list = LinkedList()
@@ -168,13 +189,13 @@ if __name__ == '__main__':
     # list.add_front('C')
     # print(list)
 
-    print('\n# add_back example 1')
-    list = LinkedList()
-    print(list)
-    list.add_back('C')
-    list.add_back('B')
-    list.add_back('A')
-    print(list)
+    # print('\n# add_back example 1')
+    # list = LinkedList()
+    # print(list)
+    # list.add_back('C')
+    # list.add_back('B')
+    # list.add_back('A')
+    # print(list)
 
     # print('\n# insert_at_index example 1')
     # list = LinkedList()
@@ -186,8 +207,8 @@ if __name__ == '__main__':
     #         print(list)
     #     except Exception as e:
     #         print(type(e))
-    #
-    #
+
+
     # print('\n# remove_front example 1')
     # list = LinkedList([1, 2])
     # print(list)
@@ -197,25 +218,25 @@ if __name__ == '__main__':
     #         print('Successful removal', list)
     #     except Exception as e:
     #         print(type(e))
-    #
-    #
-    # print('\n# remove_back example 1')
-    # list = LinkedList()
-    # try:
-    #     list.remove_back()
-    # except Exception as e:
-    #     print(type(e))
-    # list.add_front('Z')
-    # list.remove_back()
-    # print(list)
-    # list.add_front('Y')
-    # list.add_back('Z')
-    # list.add_front('X')
-    # print(list)
-    # list.remove_back()
-    # print(list)
-    #
-    #
+
+
+    print('\n# remove_back example 1')
+    list = LinkedList()
+    try:
+        list.remove_back()
+    except Exception as e:
+        print(type(e))
+    list.add_front('Z')
+    list.remove_back()
+    print(list)
+    list.add_front('Y')
+    list.add_back('Z')
+    list.add_front('X')
+    print(list)
+    list.remove_back()
+    print(list)
+
+
     # print('\n# remove_at_index example 1')
     # list = LinkedList([1, 2, 3, 4, 5, 6])
     # print(list)
