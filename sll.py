@@ -178,8 +178,7 @@ class LinkedList:
         pass
 
 
-if __name__ == '__main__':
-    # pass
+# if __name__ == '__main__':
 
     # print('\n# add_front example 1')
     # list = LinkedList()
@@ -220,21 +219,21 @@ if __name__ == '__main__':
     #         print(type(e))
 
 
-    print('\n# remove_back example 1')
-    list = LinkedList()
-    try:
-        list.remove_back()
-    except Exception as e:
-        print(type(e))
-    list.add_front('Z')
-    list.remove_back()
-    print(list)
-    list.add_front('Y')
-    list.add_back('Z')
-    list.add_front('X')
-    print(list)
-    list.remove_back()
-    print(list)
+    # print('\n# remove_back example 1')
+    # list = LinkedList()
+    # try:
+    #     list.remove_back()
+    # except Exception as e:
+    #     print(type(e))
+    # list.add_front('Z')
+    # list.remove_back()
+    # print(list)
+    # list.add_front('Y')
+    # list.add_back('Z')
+    # list.add_front('X')
+    # print(list)
+    # list.remove_back()
+    # print(list)
 
 
     # print('\n# remove_at_index example 1')
