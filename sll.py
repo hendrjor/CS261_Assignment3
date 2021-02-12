@@ -1,7 +1,7 @@
 # Course: CS261 - Data Structures
-# Student Name:
-# Assignment:
-# Description:
+# Student Name: Jordan Hendricks
+# Assignment: Assignment 3
+# Description: Implementation of Linked List
 
 
 class SLLException(Exception):
@@ -156,7 +156,6 @@ class LinkedList:
         count += 1
         self.remove_index_helper(count, index, current)
 
-
     def get_front(self) -> object:
         """Returns the value from the first node in the list"""
         if self.length() <= 0:
@@ -229,6 +228,23 @@ class LinkedList:
         current_index += 1
         current = current.next
         return self.slice_helper(current, current_index, start_index, end_index, new_list)
+
+    def get_at_index(self, index):
+        """Returns the value at a specific index"""
+        if index < 0 or index >= self.length():
+            raise SLLException
+        current_index = 0
+        current = self.head
+        return self.get_at_index_helper(current, current_index, index)
+
+    def get_at_index_helper(self, current, current_index, index):
+        """Parses through list until index specified is reached"""
+        if index == current_index:
+            return current.next.value
+        current = current.next
+        current_index += 1
+        return self.get_at_index_helper(current, current_index, index)
+
 
 # if __name__ == '__main__':
 
