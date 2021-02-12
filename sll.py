@@ -212,7 +212,7 @@ class LinkedList:
         """Returns a new LinkedList containing nodes from the start index based on the length given"""
         if start_index < 0 or start_index > self.length() - 1:
             raise SLLException
-        elif start_index + size > self.length():
+        elif start_index + size > self.length() or size <= 0:
             raise SLLException
         new_list = LinkedList()
         end_index = start_index + size - 1
