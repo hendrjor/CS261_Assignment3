@@ -116,7 +116,6 @@ class LinkedList:
         current = self.head
         self.insert_helper(count, index, current, new_node)
 
-
     def remove_front(self) -> None:
         """Removes the first node from the list"""
         if self.length() <= 0:
@@ -132,7 +131,6 @@ class LinkedList:
         current = self.head
         self.remove_back_helper(current)
 
-
     def remove_back_helper(self, current):
         """Helps go through the list to remove the last node"""
         if current.next.next == self.tail:
@@ -142,28 +140,58 @@ class LinkedList:
         self.remove_back_helper(current)
 
     def remove_at_index(self, index: int) -> None:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Removes a node at an index"""
+        if index < 0 or index > self.length() - 1:
+            raise SLLException
+        count = 0
+        current = self.head
+        self.remove_index_helper(count, index, current)
+
+    def remove_index_helper(self, count, index, current):
+        """Helps keep track of node and removes a node at desired index"""
+        if count == index:
+            current.next = current.next.next
+            return
+        current = current.next
+        count += 1
+        self.remove_index_helper(count, index, current)
+
 
     def get_front(self) -> object:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Returns the value from the first node in the list"""
+        if self.length() <= 0:
+            raise SLLException
+        node = self.head.next
+        return node.value
 
     def get_back(self) -> object:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Returns the value from the last node in the list"""
+        if self.length() <= 0:
+            raise SLLException
+        current = self.head
+        return self.get_back_helper(current)
+
+    def get_back_helper(self, current):
+        """Helps keep track of node and removes last node"""
+        if current.next == self.tail:
+            return current.value
+        current = current.next
+        return self.get_back_helper(current)
 
     def remove(self, value: object) -> bool:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Removes the first node in the list that matches the 'value' given"""
+        current = self.head
+        return self.remove_helper(current, value)
+
+    def remove_helper(self, current, value):
+        """Parses through list until a node with the correct value is found or the end of the list is reached"""
+        if current.next.value == value:
+            current.next = current.next.next
+            return True
+        elif current.next == self.tail:
+            return False
+        current = current.next
+        return self.remove_helper(current, value)
 
     def count(self, value: object) -> int:
         """
@@ -176,7 +204,6 @@ class LinkedList:
         TODO: Write this implementation
         """
         pass
-
 
 # if __name__ == '__main__':
 
@@ -247,8 +274,8 @@ class LinkedList:
     #     except Exception as e:
     #         print(type(e))
     # print(list)
-    #
-    #
+
+
     # print('\n# get_front example 1')
     # list = LinkedList(['A', 'B'])
     # print(list.get_front())
@@ -260,8 +287,8 @@ class LinkedList:
     #     print(list.get_front())
     # except Exception as e:
     #     print(type(e))
-    #
-    #
+
+
     # print('\n# get_back example 1')
     # list = LinkedList([1, 2, 3])
     # list.add_back(4)
@@ -269,20 +296,20 @@ class LinkedList:
     # list.remove_back()
     # print(list)
     # print(list.get_back())
-    #
-    #
+
+
     # print('\n# remove example 1')
     # list = LinkedList([1, 2, 3, 1, 2, 3, 1, 2, 3])
     # print(list)
     # for value in [7, 3, 3, 3, 3]:
     #     print(list.remove(value), list.length(), list)
-    #
-    #
+
+
     # print('\n# count example 1')
     # list = LinkedList([1, 2, 3, 1, 2, 2])
     # print(list, list.count(1), list.count(2), list.count(3), list.count(4))
-    #
-    #
+
+
     # print('\n# slice example 1')
     # list = LinkedList([1, 2, 3, 4, 5, 6, 7, 8, 9])
     # ll_slice = list.slice(1, 3)
