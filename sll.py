@@ -209,10 +209,26 @@ class LinkedList:
         return self.count_helper(current, value, count)
 
     def slice(self, start_index: int, size: int) -> object:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Returns a new LinkedList containing nodes from the start index based on the length given"""
+        if start_index < 0 or start_index > self.length() - 1:
+            raise SLLException
+        elif start_index + size > self.length():
+            raise SLLException
+        new_list = LinkedList()
+        end_index = start_index + size - 1
+        current = self.head
+        current_index = 0
+        return self.slice_helper(current, current_index, start_index, end_index, new_list)
+
+    def slice_helper(self, current, current_index, start_index, end_index, new_list):
+        """Parses through each node to determine the new LinkedList's contents """
+        if start_index <= current_index <= end_index:
+            new_list.add_back(current.next.value)
+        if current.next == self.tail:
+            return new_list
+        current_index += 1
+        current = current.next
+        return self.slice_helper(current, current_index, start_index, end_index, new_list)
 
 # if __name__ == '__main__':
 
@@ -325,8 +341,8 @@ class LinkedList:
     # print(list, ll_slice, sep="\n")
     # ll_slice.remove_at_index(0)
     # print(list, ll_slice, sep="\n")
-    #
-    #
+
+
     # print('\n# slice example 2')
     # list = LinkedList([10, 11, 12, 13, 14, 15, 16])
     # print("SOURCE:", list)
