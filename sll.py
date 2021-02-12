@@ -194,10 +194,19 @@ class LinkedList:
         return self.remove_helper(current, value)
 
     def count(self, value: object) -> int:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Counts the number of elements in the list that match the provided 'value'"""
+        current = self.head
+        count = 0
+        return self.count_helper(current, value, count)
+
+    def count_helper(self, current, value, count):
+        """Parses through list until a node with the correct value is found or the end of the list is reached"""
+        if current.next.value == value:
+            count += 1
+        elif current.next == self.tail:
+            return count
+        current = current.next
+        return self.count_helper(current, value, count)
 
     def slice(self, start_index: int, size: int) -> object:
         """
