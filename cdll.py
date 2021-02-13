@@ -132,15 +132,15 @@ class CircularList:
             node.prev = self.sentinel
             self.sentinel.next = node
             return
-        current = self.sentinel.next
+        current = self.sentinel
         for i in range(index + 1):
-            if i == index:
-                next_node = current.next
-                next_node.prev = node
-                node.next = next_node
-                node.prev = current
-                current.next = node
             current = current.next
+        if i == index:
+            next_node = current.next
+            next_node.prev = node
+            node.next = next_node
+            node.prev = current
+            current.next = node
 
     def remove_front(self) -> None:
         """
@@ -228,21 +228,21 @@ class CircularList:
 
 if __name__ == '__main__':
 
-    print('\n# add_front example 1')
-    lst = CircularList()
-    print(lst)
-    lst.add_front('A')
-    lst.add_front('B')
-    lst.add_front('C')
-    print(lst)
+    # print('\n# add_front example 1')
+    # lst = CircularList()
+    # print(lst)
+    # lst.add_front('A')
+    # lst.add_front('B')
+    # lst.add_front('C')
+    # print(lst)
 
-    print('\n# add_back example 1')
-    lst = CircularList()
-    print(lst)
-    lst.add_back('C')
-    lst.add_back('B')
-    lst.add_back('A')
-    print(lst)
+    # print('\n# add_back example 1')
+    # lst = CircularList()
+    # print(lst)
+    # lst.add_back('C')
+    # lst.add_back('B')
+    # lst.add_back('A')
+    # print(lst)
 
     print('\n# insert_at_index example 1')
     lst = CircularList()
