@@ -125,13 +125,6 @@ class CircularList:
         if index < 0 or index > self.length():
             raise CDLLException
         node = DLNode(value)
-        # if index == 0:
-        #     first = self.sentinel.next
-        #     first.prev = node
-        #     node.next = first
-        #     node.prev = self.sentinel
-        #     self.sentinel.next = node
-        #     return
         current = self.sentinel
         for i in range(index):
             current = current.next
@@ -141,11 +134,16 @@ class CircularList:
         node.prev = current
         current.next = node
 
+
     def remove_front(self) -> None:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Removes the first node of the list"""
+        if self.length() == 0:
+            raise CDLLException
+        first = self.sentinel.next
+        second = first.next
+        self.sentinel.next = first.next
+        second.prev = self.sentinel
+
 
     def remove_back(self) -> None:
         """
@@ -254,16 +252,16 @@ if __name__ == '__main__':
         except Exception as e:
             print(type(e))
 
-    # print('\n# remove_front example 1')
-    # lst = CircularList([1, 2])
-    # print(lst)
-    # for i in range(3):
-    #     try:
-    #         lst.remove_front()
-    #         print('Successful removal', lst)
-    #     except Exception as e:
-    #         print(type(e))
-    #
+    print('\n# remove_front example 1')
+    lst = CircularList([1, 2])
+    print(lst)
+    for i in range(3):
+        try:
+            lst.remove_front()
+            print('Successful removal', lst)
+        except Exception as e:
+            print(type(e))
+
     # print('\n# remove_back example 1')
     # lst = CircularList()
     # try:
@@ -279,7 +277,7 @@ if __name__ == '__main__':
     # print(lst)
     # lst.remove_back()
     # print(lst)
-    #
+
     # print('\n# remove_at_index example 1')
     # lst = CircularList([1, 2, 3, 4, 5, 6])
     # print(lst)
