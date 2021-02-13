@@ -178,10 +178,16 @@ class CircularList:
         return self.sentinel.prev.value
 
     def remove(self, value: object) -> bool:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Traverses list and removes first node matching the provided value given"""
+        current = self.sentinel
+        for i in range(self.length() + 1):
+            if current.next.value == value:
+                next_node = current.next.next
+                current.next = next_node
+                next_node.prev = current
+                return
+            current = current.next
+
 
     def count(self, value: object) -> int:
         """
@@ -231,7 +237,7 @@ class CircularList:
         """
         pass
 
-# if __name__ == '__main__':
+if __name__ == '__main__':
 
     # print('\n# add_front example 1')
     # lst = CircularList()
@@ -286,17 +292,17 @@ class CircularList:
     # lst.remove_back()
     # print(lst)
 
-    # print('\n# remove_at_index example 1')
-    # lst = CircularList([1, 2, 3, 4, 5, 6])
-    # print(lst)
-    # for index in [0, 0, 0, 2, 2, -2]:
-    #     print('Removed at index:', index, ': ', end='')
-    #     try:
-    #         lst.remove_at_index(index)
-    #         print(lst)
-    #     except Exception as e:
-    #         print(type(e))
-    # print(lst)
+    print('\n# remove_at_index example 1')
+    lst = CircularList([1, 2, 3, 4, 5, 6])
+    print(lst)
+    for index in [0, 0, 0, 2, 2, -2]:
+        print('Removed at index:', index, ': ', end='')
+        try:
+            lst.remove_at_index(index)
+            print(lst)
+        except Exception as e:
+            print(type(e))
+    print(lst)
 
     # print('\n# get_front example 1')
     # lst = CircularList(['A', 'B'])
@@ -318,21 +324,21 @@ class CircularList:
     # print(lst)
     # print(lst.get_back())
 
-    # print('\n# remove example 1')
-    # lst = CircularList([1, 2, 3, 1, 2, 3, 1, 2, 3])
-    # print(lst)
-    # for value in [7, 3, 3, 3, 3]:
-    #     print(lst.remove(value), lst.length(), lst)
-    #
+    print('\n# remove example 1')
+    lst = CircularList([1, 2, 3, 1, 2, 3, 1, 2, 3])
+    print(lst)
+    for value in [7, 3, 3, 3, 3]:
+        print(lst.remove(value), lst.length(), lst)
+
     # print('\n# count example 1')
     # lst = CircularList([1, 2, 3, 1, 2, 2])
     # print(lst, lst.count(1), lst.count(2), lst.count(3), lst.count(4))
-    #
+
     # print('\n# swap_pairs example 1')
     # lst = CircularList([0, 1, 2, 3, 4, 5, 6])
     # test_cases = ((0, 6), (0, 7), (-1, 6), (1, 5),
     #               (4, 2), (3, 3), (1, 2), (2, 1))
-    #
+
     # for i, j in test_cases:
     #     print('Swap nodes ', i, j, ' ', end='')
     #     try:
