@@ -231,7 +231,7 @@ class CircularList:
         """
         pass
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
     # print('\n# add_front example 1')
     # lst = CircularList()
