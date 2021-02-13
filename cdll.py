@@ -125,22 +125,21 @@ class CircularList:
         if index < 0 or index > self.length():
             raise CDLLException
         node = DLNode(value)
-        if index == 0:
-            first = self.sentinel.next
-            first.prev = node
-            node.next = first
-            node.prev = self.sentinel
-            self.sentinel.next = node
-            return
+        # if index == 0:
+        #     first = self.sentinel.next
+        #     first.prev = node
+        #     node.next = first
+        #     node.prev = self.sentinel
+        #     self.sentinel.next = node
+        #     return
         current = self.sentinel
-        for i in range(index + 1):
+        for i in range(index):
             current = current.next
-        if i == index:
-            next_node = current.next
-            next_node.prev = node
-            node.next = next_node
-            node.prev = current
-            current.next = node
+        next_node = current.next
+        next_node.prev = node
+        node.next = next_node
+        node.prev = current
+        current.next = node
 
     def remove_front(self) -> None:
         """
