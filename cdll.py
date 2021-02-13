@@ -190,16 +190,64 @@ class CircularList:
 
 
     def count(self, value: object) -> int:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Counts the number of elements in the list matching the provided value"""
+        current = self.sentinel
+        count = 0
+        for i in range(self.length() + 1):
+            if current.next.value == value:
+                count += 1
+            current = current.next
+        return count
 
     def swap_pairs(self, index1: int, index2: int) -> None:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Swaps two nodes given their indices"""
+        if index1 < 0 or index1 > self.length() - 1:
+            raise CDLLException
+        if index2 < 0 or index2 > self.length() - 1:
+            raise CDLLException
+
+        node1 = self.sentinel.next
+        for i in range(index1):
+            node1 = node1.next  # determines the first node to be swapped
+        node1_prev = node1.prev
+        node1_next = node1.next
+
+        node2 = self.sentinel.next
+        for i in range(index2):
+            node2 = node2.next  # determines the second node to be swapped
+        node2_prev = node2.prev
+        node2_next = node2.next
+
+        if index2 - index1 == 1:  # determines if the nodes are next to each other
+            node1_prev.next = node2
+            node2.prev = node1_prev
+            node2.next = node1
+
+            node1.prev = node2
+            node1.next = node2_next
+            node2_next.prev = node1
+            return
+
+        if index1 - index2 == 1:  # determines if the nodes are next to each other
+            node2_prev.next = node1
+            node1.prev = node2_prev
+            node1.next = node2
+
+            node2.prev = node1
+            node2.next = node1_next
+            node1_next.prev = node2
+            return
+
+        node1_prev.next = node2
+        node2.prev = node1_prev
+        node2.next = node1_next
+        node1_next.prev = node2
+
+        node2_prev.next = node1
+        node1.prev = node2_prev
+        node1.next = node2_next
+        node2_next.prev = node1
+
 
     def reverse(self) -> None:
         """
@@ -292,17 +340,17 @@ if __name__ == '__main__':
     # lst.remove_back()
     # print(lst)
 
-    print('\n# remove_at_index example 1')
-    lst = CircularList([1, 2, 3, 4, 5, 6])
-    print(lst)
-    for index in [0, 0, 0, 2, 2, -2]:
-        print('Removed at index:', index, ': ', end='')
-        try:
-            lst.remove_at_index(index)
-            print(lst)
-        except Exception as e:
-            print(type(e))
-    print(lst)
+    # print('\n# remove_at_index example 1')
+    # lst = CircularList([1, 2, 3, 4, 5, 6])
+    # print(lst)
+    # for index in [0, 0, 0, 2, 2, -2]:
+    #     print('Removed at index:', index, ': ', end='')
+    #     try:
+    #         lst.remove_at_index(index)
+    #         print(lst)
+    #     except Exception as e:
+    #         print(type(e))
+    # print(lst)
 
     # print('\n# get_front example 1')
     # lst = CircularList(['A', 'B'])
@@ -324,29 +372,29 @@ if __name__ == '__main__':
     # print(lst)
     # print(lst.get_back())
 
-    print('\n# remove example 1')
-    lst = CircularList([1, 2, 3, 1, 2, 3, 1, 2, 3])
-    print(lst)
-    for value in [7, 3, 3, 3, 3]:
-        print(lst.remove(value), lst.length(), lst)
+    # print('\n# remove example 1')
+    # lst = CircularList([1, 2, 3, 1, 2, 3, 1, 2, 3])
+    # print(lst)
+    # for value in [7, 3, 3, 3, 3]:
+    #     print(lst.remove(value), lst.length(), lst)
 
     # print('\n# count example 1')
     # lst = CircularList([1, 2, 3, 1, 2, 2])
     # print(lst, lst.count(1), lst.count(2), lst.count(3), lst.count(4))
 
-    # print('\n# swap_pairs example 1')
-    # lst = CircularList([0, 1, 2, 3, 4, 5, 6])
-    # test_cases = ((0, 6), (0, 7), (-1, 6), (1, 5),
-    #               (4, 2), (3, 3), (1, 2), (2, 1))
+    print('\n# swap_pairs example 1')
+    lst = CircularList([0, 1, 2, 3, 4, 5, 6])
+    test_cases = ((0, 6), (0, 7), (-1, 6), (1, 5),
+                  (4, 2), (3, 3), (1, 2), (2, 1))
 
-    # for i, j in test_cases:
-    #     print('Swap nodes ', i, j, ' ', end='')
-    #     try:
-    #         lst.swap_pairs(i, j)
-    #         print(lst)
-    #     except Exception as e:
-    #         print(type(e))
-    #
+    for i, j in test_cases:
+        print('Swap nodes ', i, j, ' ', end='')
+        try:
+            lst.swap_pairs(i, j)
+            print(lst)
+        except Exception as e:
+            print(type(e))
+
     # print('\n# reverse example 1')
     # test_cases = (
     #     [1, 2, 3, 3, 4, 5],
