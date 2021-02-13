@@ -166,16 +166,16 @@ class CircularList:
         next_node.prev = current
 
     def get_front(self) -> object:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Returns the value of the first node in the list"""
+        if self.length() == 0:
+            raise CDLLException
+        return self.sentinel.next.value
 
     def get_back(self) -> object:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Returns the value of the last node in the list"""
+        if self.length() == 0:
+            raise CDLLException
+        return self.sentinel.prev.value
 
     def remove(self, value: object) -> bool:
         """
@@ -286,17 +286,17 @@ if __name__ == '__main__':
     # lst.remove_back()
     # print(lst)
 
-    print('\n# remove_at_index example 1')
-    lst = CircularList([1, 2, 3, 4, 5, 6])
-    print(lst)
-    for index in [0, 0, 0, 2, 2, -2]:
-        print('Removed at index:', index, ': ', end='')
-        try:
-            lst.remove_at_index(index)
-            print(lst)
-        except Exception as e:
-            print(type(e))
-    print(lst)
+    # print('\n# remove_at_index example 1')
+    # lst = CircularList([1, 2, 3, 4, 5, 6])
+    # print(lst)
+    # for index in [0, 0, 0, 2, 2, -2]:
+    #     print('Removed at index:', index, ': ', end='')
+    #     try:
+    #         lst.remove_at_index(index)
+    #         print(lst)
+    #     except Exception as e:
+    #         print(type(e))
+    # print(lst)
 
     # print('\n# get_front example 1')
     # lst = CircularList(['A', 'B'])
@@ -317,7 +317,7 @@ if __name__ == '__main__':
     # lst.remove_back()
     # print(lst)
     # print(lst.get_back())
-    #
+
     # print('\n# remove example 1')
     # lst = CircularList([1, 2, 3, 1, 2, 3, 1, 2, 3])
     # print(lst)
