@@ -85,7 +85,7 @@ class MaxStack:
 
 
 # BASIC TESTING
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
     # print('\n# push example 1')
     # s = MaxStack()
@@ -123,19 +123,19 @@ if __name__ == "__main__":
     # print(s.top())
     # print(s)
 
-    print('\n# get_max example 1')
-    s = MaxStack()
-    for value in [1, -20, 15, 21, 21, 40, 50]:
-        print(s, ' ', end='')
-        try:
-            print(s.get_max())
-        except Exception as e:
-            print(type(e))
-        s.push(value)
-    while not s.is_empty():
-        print(s.size(), end='')
-        print(' Pop value:', s.pop(), ' get_max after: ', end='')
-        try:
-            print(s.get_max())
-        except Exception as e:
-            print(type(e))
+    # print('\n# get_max example 1')
+    # s = MaxStack()
+    # for value in [1, -20, 15, 21, 21, 40, 50]:
+    #     print(s, ' ', end='')
+    #     try:
+    #         print(s.get_max())
+    #     except Exception as e:
+    #         print(type(e))
+    #     s.push(value)
+    # while not s.is_empty():
+    #     print(s.size(), end='')
+    #     print(' Pop value:', s.pop(), ' get_max after: ', end='')
+    #     try:
+    #         print(s.get_max())
+    #     except Exception as e:
+    #         print(type(e))
