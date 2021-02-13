@@ -105,27 +105,24 @@ class CircularList:
     def add_front(self, value: object) -> None:
         """Adds a new node to the beginning of the list"""
         node = DLNode(value)
-        last = self.sentinel.prev
-        node.next = last.next
-        last.next = node
-        # node.next = self.sentinel.next
-        # self.sentinel.next = node
-        print(self.length())
-
+        first = self.sentinel.next
+        first.prev = node
+        node.next = first
+        node.prev = self.sentinel
+        self.sentinel.next = node
 
     def add_back(self, value: object) -> None:
         """Adds a new node to the end of the list"""
         node = DLNode(value)
         last = self.sentinel.prev
-        node.next = last.next
         last.next = node
+        node.prev = last
+        node.next = self.sentinel
         self.sentinel.prev = node
-        print(self.length())
 
     def insert_at_index(self, index: int, value: object) -> None:
         """Inserts node at specified index"""
         # if index < 0 or index > self.length():
-        #     # print(self.length())
         #     raise CDLLException
         # node = DLNode(value)
         # current = self.sentinel.next
@@ -226,15 +223,15 @@ class CircularList:
         pass
 
 # if __name__ == '__main__':
-#
-#     print('\n# add_front example 1')
-#     lst = CircularList()
-#     print(lst)
-#     lst.add_front('A')
-#     lst.add_front('B')
-#     lst.add_front('C')
-#     print(lst)
 
+    # print('\n# add_front example 1')
+    # lst = CircularList()
+    # print(lst)
+    # lst.add_front('A')
+    # lst.add_front('B')
+    # lst.add_front('C')
+    # print(lst)
+    #
     # print('\n# add_back example 1')
     # lst = CircularList()
     # print(lst)
