@@ -269,7 +269,7 @@ class CircularList:
 
     def rotate(self, steps: int) -> None:
         """Rotates each node in the list a certain number of spaces"""
-        if steps == 0:
+        if steps == 0 or self.length() <= 1:
             return
         length = self.length()
         new_steps = steps % length
@@ -526,17 +526,17 @@ if __name__ == '__main__':
         lst.rotate(steps)
         print(lst, steps)
 
-    # print('\n# rotate example 2')
-    # lst = CircularList([10, 20, 30, 40])
-    # for j in range(-1, 2, 2):
-    #     for _ in range(3):
-    #         lst.rotate(j)
-    #         print(lst)
-    #
-    # print('\n# rotate example 3')
-    # lst = CircularList()
-    # lst.rotate(10)
-    # print(lst)
+    print('\n# rotate example 2')
+    lst = CircularList([10, 20, 30, 40])
+    for j in range(-1, 2, 2):
+        for _ in range(3):
+            lst.rotate(j)
+            print(lst)
+
+    print('\n# rotate example 3')
+    lst = CircularList()
+    lst.rotate(10)
+    print(lst)
 
     # print('\n# remove_duplicates example 1')
     # test_cases = (
