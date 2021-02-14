@@ -268,10 +268,48 @@ class CircularList:
         pass
 
     def rotate(self, steps: int) -> None:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Rotates each node in the list a certain number of spaces"""
+        if steps == 0:
+            return
+        length = self.length()
+        new_steps = steps % length
+        first_index = length - new_steps
+
+        first = self.sentinel
+        for i in range(first_index + 1):
+            first = first.next
+
+        last = first.prev
+
+        inside_cutoff = first
+        for i in range(new_steps - 1):
+            inside_cutoff = inside_cutoff.next
+
+        outside_cutoff = first
+        for i in range(first_index):
+            outside_cutoff = outside_cutoff.prev
+
+        self.sentinel.next = first
+        first.prev = self.sentinel
+        self.sentinel.prev = last
+        last.next = self.sentinel
+        inside_cutoff.next = outside_cutoff
+        outside_cutoff.prev = inside_cutoff
+
+
+        # last_cutoff = last
+        # for i in range(first_index):
+        #     last_cutoff = last_cutoff.prev
+        #
+        # print(first.value)
+        # print(last.value)
+        # print(outside_cutoff.value)
+        # print(last_cutoff.value)
+
+
+
+        # print(new_steps)
+        # print(first_index)
 
     def remove_duplicates(self) -> None:
         """Deletes all nodes that have duplicate values in a sorted linked list"""
@@ -298,13 +336,6 @@ class CircularList:
                 current = current.next
                 next_curr = next_curr.next
                 duplicate = False
-
-            # if current.value == next_curr.value:
-                # previous.next = next_curr
-                # next_curr.prev = previous
-            # previous = previous.next
-            # current = current.next
-            # next_curr = next_curr.next
 
     def odd_even(self) -> None:
         """
@@ -405,11 +436,11 @@ if __name__ == '__main__':
     # print(lst)
     # print(lst.get_back())
 
-    print('\n# remove example 1')
-    lst = CircularList([1, 2, 3, 1, 2, 3, 1, 2, 3])
-    print(lst)
-    for value in [7, 3, 3, 3, 3]:
-        print(lst.remove(value), lst.length(), lst)
+    # print('\n# remove example 1')
+    # lst = CircularList([1, 2, 3, 1, 2, 3, 1, 2, 3])
+    # print(lst)
+    # for value in [7, 3, 3, 3, 3]:
+    #     print(lst.remove(value), lst.length(), lst)
 
     # print('\n# count example 1')
     # lst = CircularList([1, 2, 3, 1, 2, 2])
@@ -488,12 +519,12 @@ if __name__ == '__main__':
     #     lst.sort()
     #     print(lst)
 
-    # print('\n# rotate example 1')
-    # source = [_ for _ in range(-20, 20, 7)]
-    # for steps in [1, 2, 0, -1, -2, 28, -100]:
-    #     lst = CircularList(source)
-    #     lst.rotate(steps)
-    #     print(lst, steps)
+    print('\n# rotate example 1')
+    source = [_ for _ in range(-20, 20, 7)]
+    for steps in [1, 2, 0, -1, -2, 28, -100]:
+        lst = CircularList(source)
+        lst.rotate(steps)
+        print(lst, steps)
 
     # print('\n# rotate example 2')
     # lst = CircularList([10, 20, 30, 40])
@@ -507,20 +538,20 @@ if __name__ == '__main__':
     # lst.rotate(10)
     # print(lst)
 
-    print('\n# remove_duplicates example 1')
-    test_cases = (
-        [1, 2, 3, 4, 5], [1, 1, 1, 1, 1],
-        [], [1], [1, 1], [1, 1, 1, 2, 2, 2],
-        [0, 1, 1, 2, 3, 3, 4, 5, 5, 6],
-        list("abccd"),
-        list("005BCDDEEFI")
-    )
+    # print('\n# remove_duplicates example 1')
+    # test_cases = (
+    #     [1, 2, 3, 4, 5], [1, 1, 1, 1, 1],
+    #     [], [1], [1, 1], [1, 1, 1, 2, 2, 2],
+    #     [0, 1, 1, 2, 3, 3, 4, 5, 5, 6],
+    #     list("abccd"),
+    #     list("005BCDDEEFI")
+    # )
 
-    for case in test_cases:
-        lst = CircularList(case)
-        print('INPUT :', lst)
-        lst.remove_duplicates()
-        print('OUTPUT:', lst)
+    # for case in test_cases:
+    #     lst = CircularList(case)
+    #     print('INPUT :', lst)
+    #     lst.remove_duplicates()
+    #     print('OUTPUT:', lst)
 
     # print('\n# odd_even example 1')
     # test_cases = (
