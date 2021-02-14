@@ -333,8 +333,6 @@ class CircularList:
 
         first_even = even
         while True:
-
-
             current.next = odd
             odd.prev = current
             if odd.next == self.sentinel:
