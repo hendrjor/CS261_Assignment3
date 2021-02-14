@@ -250,15 +250,20 @@ class CircularList:
 
 
     def reverse(self) -> None:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Reverses the order of nodes in the list"""
+
+        last = self.sentinel.prev
+        first = self.sentinel
+
+        for i in range(self.length() + 1):
+            first.next = last
+            temp = last.prev
+            last.prev = first
+            first = first.next
+            last = temp
 
     def sort(self) -> None:
-        """
-        TODO: Write this implementation
-        """
+        """"""
         pass
 
     def rotate(self, steps: int) -> None:
@@ -268,10 +273,18 @@ class CircularList:
         pass
 
     def remove_duplicates(self) -> None:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Deletes all nodes that have duplicate values in a sorted linked list"""
+        previous = self.sentinel
+        current = self.sentinel.next
+        next_curr = current.next
+
+        for i in range(self.length()):
+            if current.value == next_curr.value:
+                previous.next = next_curr
+                next_curr.prev = previous
+            previous = previous.next
+            current = current.next
+            next_curr = next_curr.next
 
     def odd_even(self) -> None:
         """
@@ -382,18 +395,18 @@ if __name__ == '__main__':
     # lst = CircularList([1, 2, 3, 1, 2, 2])
     # print(lst, lst.count(1), lst.count(2), lst.count(3), lst.count(4))
 
-    print('\n# swap_pairs example 1')
-    lst = CircularList([0, 1, 2, 3, 4, 5, 6])
-    test_cases = ((0, 6), (0, 7), (-1, 6), (1, 5),
-                  (4, 2), (3, 3), (1, 2), (2, 1))
-
-    for i, j in test_cases:
-        print('Swap nodes ', i, j, ' ', end='')
-        try:
-            lst.swap_pairs(i, j)
-            print(lst)
-        except Exception as e:
-            print(type(e))
+    # print('\n# swap_pairs example 1')
+    # lst = CircularList([0, 1, 2, 3, 4, 5, 6])
+    # test_cases = ((0, 6), (0, 7), (-1, 6), (1, 5),
+    #               (4, 2), (3, 3), (1, 2), (2, 1))
+    #
+    # for i, j in test_cases:
+    #     print('Swap nodes ', i, j, ' ', end='')
+    #     try:
+    #         lst.swap_pairs(i, j)
+    #         print(lst)
+    #     except Exception as e:
+    #         print(type(e))
 
     # print('\n# reverse example 1')
     # test_cases = (
@@ -405,7 +418,7 @@ if __name__ == '__main__':
     #     lst = CircularList(case)
     #     lst.reverse()
     #     print(lst)
-    #
+
     # print('\n# reverse example 2')
     # lst = CircularList()
     # print(lst)
@@ -416,10 +429,10 @@ if __name__ == '__main__':
     # lst.add_front(1)
     # lst.reverse()
     # print(lst)
-    #
+
     # print('\n# reverse example 3')
-    #
-    #
+
+
     # class Student:
     #     def __init__(self, name, age):
     #         self.name, self.age = name, age
@@ -429,8 +442,8 @@ if __name__ == '__main__':
     #
     #     def __str__(self):
     #         return str(self.name) + ' ' + str(self.age)
-    #
-    #
+
+
     # s1, s2 = Student('John', 20), Student('Andy', 20)
     # lst = CircularList([s1, s2])
     # print(lst)
@@ -442,7 +455,7 @@ if __name__ == '__main__':
     # lst = CircularList([1, 'A'])
     # lst.reverse()
     # print(lst)
-    #
+
     # print('\n# sort example 1')
     # test_cases = (
     #     [1, 10, 2, 20, 3, 30, 4, 40, 5],
@@ -454,14 +467,14 @@ if __name__ == '__main__':
     #     print(lst)
     #     lst.sort()
     #     print(lst)
-    #
+
     # print('\n# rotate example 1')
     # source = [_ for _ in range(-20, 20, 7)]
     # for steps in [1, 2, 0, -1, -2, 28, -100]:
     #     lst = CircularList(source)
     #     lst.rotate(steps)
     #     print(lst, steps)
-    #
+
     # print('\n# rotate example 2')
     # lst = CircularList([10, 20, 30, 40])
     # for j in range(-1, 2, 2):
@@ -473,22 +486,22 @@ if __name__ == '__main__':
     # lst = CircularList()
     # lst.rotate(10)
     # print(lst)
-    #
-    # print('\n# remove_duplicates example 1')
-    # test_cases = (
-    #     [1, 2, 3, 4, 5], [1, 1, 1, 1, 1],
-    #     [], [1], [1, 1], [1, 1, 1, 2, 2, 2],
-    #     [0, 1, 1, 2, 3, 3, 4, 5, 5, 6],
-    #     list("abccd"),
-    #     list("005BCDDEEFI")
-    # )
-    #
-    # for case in test_cases:
-    #     lst = CircularList(case)
-    #     print('INPUT :', lst)
-    #     lst.remove_duplicates()
-    #     print('OUTPUT:', lst)
-    #
+
+    print('\n# remove_duplicates example 1')
+    test_cases = (
+        [1, 2, 3, 4, 5], [1, 1, 1, 1, 1],
+        [], [1], [1, 1], [1, 1, 1, 2, 2, 2],
+        [0, 1, 1, 2, 3, 3, 4, 5, 5, 6],
+        list("abccd"),
+        list("005BCDDEEFI")
+    )
+
+    for case in test_cases:
+        lst = CircularList(case)
+        print('INPUT :', lst)
+        lst.remove_duplicates()
+        print('OUTPUT:', lst)
+
     # print('\n# odd_even example 1')
     # test_cases = (
     #     [1, 2, 3, 4, 5], list('ABCDE'),
