@@ -185,8 +185,9 @@ class CircularList:
                 next_node = current.next.next
                 current.next = next_node
                 next_node.prev = current
-                return
+                return True
             current = current.next
+        return False
 
 
     def count(self, value: object) -> int:
@@ -277,14 +278,33 @@ class CircularList:
         previous = self.sentinel
         current = self.sentinel.next
         next_curr = current.next
+        duplicate = False
 
-        for i in range(self.length()):
+        while current is not self.sentinel:
+
             if current.value == next_curr.value:
+                next_curr = next_curr.next
+                duplicate = True
+
+            elif duplicate is True:
                 previous.next = next_curr
                 next_curr.prev = previous
-            previous = previous.next
-            current = current.next
-            next_curr = next_curr.next
+                current = next_curr
+                next_curr = next_curr.next
+                duplicate = False
+
+            else:
+                previous = previous.next
+                current = current.next
+                next_curr = next_curr.next
+                duplicate = False
+
+            # if current.value == next_curr.value:
+                # previous.next = next_curr
+                # next_curr.prev = previous
+            # previous = previous.next
+            # current = current.next
+            # next_curr = next_curr.next
 
     def odd_even(self) -> None:
         """
@@ -385,11 +405,11 @@ if __name__ == '__main__':
     # print(lst)
     # print(lst.get_back())
 
-    # print('\n# remove example 1')
-    # lst = CircularList([1, 2, 3, 1, 2, 3, 1, 2, 3])
-    # print(lst)
-    # for value in [7, 3, 3, 3, 3]:
-    #     print(lst.remove(value), lst.length(), lst)
+    print('\n# remove example 1')
+    lst = CircularList([1, 2, 3, 1, 2, 3, 1, 2, 3])
+    print(lst)
+    for value in [7, 3, 3, 3, 3]:
+        print(lst.remove(value), lst.length(), lst)
 
     # print('\n# count example 1')
     # lst = CircularList([1, 2, 3, 1, 2, 2])
