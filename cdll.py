@@ -296,21 +296,6 @@ class CircularList:
         inside_cutoff.next = outside_cutoff
         outside_cutoff.prev = inside_cutoff
 
-
-        # last_cutoff = last
-        # for i in range(first_index):
-        #     last_cutoff = last_cutoff.prev
-        #
-        # print(first.value)
-        # print(last.value)
-        # print(outside_cutoff.value)
-        # print(last_cutoff.value)
-
-
-
-        # print(new_steps)
-        # print(first_index)
-
     def remove_duplicates(self) -> None:
         """Deletes all nodes that have duplicate values in a sorted linked list"""
         previous = self.sentinel
@@ -338,10 +323,49 @@ class CircularList:
                 duplicate = False
 
     def odd_even(self) -> None:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Regroups the nodes such that the odd nodes are first followed by the even nodes"""
+
+        if self.length() <= 2:
+            return
+        current = self.sentinel.next
+        odd = current.next.next
+        even = current.next
+
+        first_even = even
+        while True:
+
+
+            current.next = odd
+            odd.prev = current
+            if odd.next == self.sentinel:
+                last_even = even
+                break
+
+            elif odd.next.next == self.sentinel:
+                even_next = odd.next
+                even.next = even_next
+                even_next.prev = even
+                even = even_next
+                last_even = even
+                break
+
+            even_next = odd.next
+            even.next = even_next
+            even_next.prev = even
+
+            # changes node positions
+            even = even_next
+            current = odd
+            odd = odd.next.next
+
+        odd.next = first_even
+        first_even.prev = odd
+        self.sentinel.prev = last_even
+        last_even.next = self.sentinel
+
+
+
+
 
     def add_integer(self, num: int) -> None:
         """
@@ -519,24 +543,24 @@ if __name__ == '__main__':
     #     lst.sort()
     #     print(lst)
 
-    print('\n# rotate example 1')
-    source = [_ for _ in range(-20, 20, 7)]
-    for steps in [1, 2, 0, -1, -2, 28, -100]:
-        lst = CircularList(source)
-        lst.rotate(steps)
-        print(lst, steps)
+    # print('\n# rotate example 1')
+    # source = [_ for _ in range(-20, 20, 7)]
+    # for steps in [1, 2, 0, -1, -2, 28, -100]:
+    #     lst = CircularList(source)
+    #     lst.rotate(steps)
+    #     print(lst, steps)
 
-    print('\n# rotate example 2')
-    lst = CircularList([10, 20, 30, 40])
-    for j in range(-1, 2, 2):
-        for _ in range(3):
-            lst.rotate(j)
-            print(lst)
+    # print('\n# rotate example 2')
+    # lst = CircularList([10, 20, 30, 40])
+    # for j in range(-1, 2, 2):
+    #     for _ in range(3):
+    #         lst.rotate(j)
+    #         print(lst)
 
-    print('\n# rotate example 3')
-    lst = CircularList()
-    lst.rotate(10)
-    print(lst)
+    # print('\n# rotate example 3')
+    # lst = CircularList()
+    # lst.rotate(10)
+    # print(lst)
 
     # print('\n# remove_duplicates example 1')
     # test_cases = (
@@ -553,19 +577,19 @@ if __name__ == '__main__':
     #     lst.remove_duplicates()
     #     print('OUTPUT:', lst)
 
-    # print('\n# odd_even example 1')
-    # test_cases = (
-    #     [1, 2, 3, 4, 5], list('ABCDE'),
-    #     [], [100], [100, 200], [100, 200, 300],
-    #     [100, 200, 300, 400],
-    #     [10, 'A', 20, 'B', 30, 'C', 40, 'D', 50, 'E']
-    # )
-    #
-    # for case in test_cases:
-    #     lst = CircularList(case)
-    #     print('INPUT :', lst)
-    #     lst.odd_even()
-    #     print('OUTPUT:', lst)
+    print('\n# odd_even example 1')
+    test_cases = (
+        [1, 2, 3, 4, 5], list('ABCDE'),
+        [], [100], [100, 200], [100, 200, 300],
+        [100, 200, 300, 400],
+        [10, 'A', 20, 'B', 30, 'C', 40, 'D', 50, 'E']
+    )
+
+    for case in test_cases:
+        lst = CircularList(case)
+        print('INPUT :', lst)
+        lst.odd_even()
+        print('OUTPUT:', lst)
 
     # print('\n# add_integer example 1')
     # test_cases = (
