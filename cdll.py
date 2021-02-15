@@ -361,15 +361,31 @@ class CircularList:
         self.sentinel.prev = last_even
         last_even.next = self.sentinel
 
-
-
-
-
     def add_integer(self, num: int) -> None:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """Adds a number to a linked list where each node represents a number's place"""
+        initial_digits = self.length()
+
+        current = self.sentinel.next
+        sum_nodes = 0
+        for i in range(initial_digits):
+            sum_nodes += current.value * (10 ** i)
+            current = current.next
+
+        total = sum_nodes + num
+        total_digits = 0  # number of total nodes in final list
+        total_div = total
+        div_by = 1
+        while total_div > 0:  # determine number of total nodes in final list
+            total_div -= div_by
+            div_by *= 10
+            total_digits += 1
+
+        new_nodes = total_digits - initial_digits
+
+        print(new_nodes)
+
+
+
 
 if __name__ == '__main__':
 
@@ -560,44 +576,45 @@ if __name__ == '__main__':
     # lst.rotate(10)
     # print(lst)
 
-    # print('\n# remove_duplicates example 1')
-    # test_cases = (
-    #     [1, 2, 3, 4, 5], [1, 1, 1, 1, 1],
-    #     [], [1], [1, 1], [1, 1, 1, 2, 2, 2],
-    #     [0, 1, 1, 2, 3, 3, 4, 5, 5, 6],
-    #     list("abccd"),
-    #     list("005BCDDEEFI")
-    # )
-
-    # for case in test_cases:
-    #     lst = CircularList(case)
-    #     print('INPUT :', lst)
-    #     lst.remove_duplicates()
-    #     print('OUTPUT:', lst)
-
-    print('\n# odd_even example 1')
+    print('\n# remove_duplicates example 1')
     test_cases = (
-        [1, 2, 3, 4, 5], list('ABCDE'),
-        [], [100], [100, 200], [100, 200, 300],
-        [100, 200, 300, 400],
-        [10, 'A', 20, 'B', 30, 'C', 40, 'D', 50, 'E']
+        [1, 2, 3, 4, 5], [1, 1, 1, 1, 1],
+        [], [1], [1, 1], [1, 1, 1, 2, 2, 2],
+        [0, 1, 1, 2, 3, 3, 4, 5, 5, 6],
+        list("abccd"),
+        list("005BCDDEEFI")
     )
 
     for case in test_cases:
         lst = CircularList(case)
         print('INPUT :', lst)
-        lst.odd_even()
+        lst.remove_duplicates()
         print('OUTPUT:', lst)
 
-    # print('\n# add_integer example 1')
+    # print('\n# odd_even example 1')
     # test_cases = (
-    #   ([1, 2, 3], 10456),
-    #   ([], 25),
-    #   ([2, 0, 9, 0, 7], 108),
-    #    ([9, 9, 9], 9_999_999),
-    #)
-    # for list_content, integer in test_cases:
-    #    lst = CircularList(list_content)
-    # print('INPUT :', lst, 'INTEGER', integer)
-    # lst.add_integer(integer)
-    # print('OUTPUT:', lst)
+    #     [1, 2, 3, 4, 5], list('ABCDE'),
+    #     [], [100], [100, 200], [100, 200, 300],
+    #     [100, 200, 300, 400],
+    #     [10, 'A', 20, 'B', 30, 'C', 40, 'D', 50, 'E']
+    # )
+    #
+    # for case in test_cases:
+    #     lst = CircularList(case)
+    #     print('INPUT :', lst)
+    #     lst.odd_even()
+    #     print('OUTPUT:', lst)
+
+    print('\n# add_integer example 1')
+    test_cases = (
+      ([1, 2, 3], 10456),
+      ([], 25),
+      ([2, 0, 9, 0, 7], 108),
+       ([9, 9, 9], 9_999_999),
+    )
+    for list_content, integer in test_cases:
+       lst = CircularList(list_content)
+    print('INPUT :', lst, 'INTEGER', integer)
+    lst.add_integer(integer)
+    print('OUTPUT:', lst)
+
