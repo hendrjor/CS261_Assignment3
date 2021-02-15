@@ -374,11 +374,15 @@ class CircularList:
         total = sum_nodes + num
         total_digits = 0  # number of total nodes in final list
         total_div = total
-        div_by = 1
-        while total_div > 0:  # determine number of total nodes in final list
-            total_div -= div_by
-            div_by *= 10
+        # print(total_div)
+        # div_by = 10
+        while total_div > 1:  # determine number of total nodes in final list
+            total_div /= 10
             total_digits += 1
+            # print(total_div)
+
+        # print(total_digits)
+        # print(initial_digits)
 
         new_nodes = total_digits - initial_digits
 
@@ -386,7 +390,7 @@ class CircularList:
         current = self.sentinel
         for z in range(0, initial_digits):
             current = current.next
-        print(new_nodes)
+        # print(new_nodes)
         for i in range(new_nodes):
             node = DLNode(None)
             current.next = node
@@ -407,9 +411,12 @@ class CircularList:
                     digit = x
                     mod_mult *= 10
                     current.value = digit
-                    current = current.prev  #
+                    current = current.prev
+                    if current == self.sentinel:
+                        return
 
             power += 1
+
 
 
 
@@ -641,7 +648,9 @@ if __name__ == '__main__':
     )
     for list_content, integer in test_cases:
        lst = CircularList(list_content)
-    print('INPUT :', lst, 'INTEGER', integer)
-    lst.add_integer(integer)
-    print('OUTPUT:', lst)
+       print('INPUT :', lst, 'INTEGER', integer)
+       lst.add_integer(integer)
+       print('OUTPUT:', lst)
+
+
 
