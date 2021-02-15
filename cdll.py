@@ -388,7 +388,7 @@ class CircularList:
             current = current.next
         print(new_nodes)
         for i in range(new_nodes):
-            node = DLNode(0)
+            node = DLNode(None)
             current.next = node
             node.prev = current
             current = current.next
