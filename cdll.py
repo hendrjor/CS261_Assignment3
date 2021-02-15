@@ -365,11 +365,11 @@ class CircularList:
         """Adds a number to a linked list where each node represents a number's place"""
         initial_digits = self.length()
 
-        current = self.sentinel.next
+        current = self.sentinel.prev
         sum_nodes = 0
         for i in range(initial_digits):
             sum_nodes += current.value * (10 ** i)
-            current = current.next
+            current = current.prev
 
         total = sum_nodes + num
         total_digits = 0  # number of total nodes in final list
@@ -382,7 +382,34 @@ class CircularList:
 
         new_nodes = total_digits - initial_digits
 
+        # Adds new nodes to the list
+        current = self.sentinel
+        for z in range(0, initial_digits):
+            current = current.next
         print(new_nodes)
+        for i in range(new_nodes):
+            node = DLNode(0)
+            current.next = node
+            node.prev = current
+            current = current.next
+        current.next = self.sentinel
+        self.sentinel.prev = current
+
+        total_temp = total
+        power = 0
+        mod_mult = 1
+        current = self.sentinel.prev
+        while total_temp != 0:
+            for x in range(0, 10):
+
+                if (total_temp - (x * (10 ** power))) % (10 * mod_mult) == 0:
+                    total_temp -= x * (10 ** power)
+                    digit = x
+                    mod_mult *= 10
+                    current.value = digit
+                    current = current.prev  #
+
+            power += 1
 
 
 
@@ -576,20 +603,20 @@ if __name__ == '__main__':
     # lst.rotate(10)
     # print(lst)
 
-    print('\n# remove_duplicates example 1')
-    test_cases = (
-        [1, 2, 3, 4, 5], [1, 1, 1, 1, 1],
-        [], [1], [1, 1], [1, 1, 1, 2, 2, 2],
-        [0, 1, 1, 2, 3, 3, 4, 5, 5, 6],
-        list("abccd"),
-        list("005BCDDEEFI")
-    )
+    # print('\n# remove_duplicates example 1')
+    # test_cases = (
+    #     [1, 2, 3, 4, 5], [1, 1, 1, 1, 1],
+    #     [], [1], [1, 1], [1, 1, 1, 2, 2, 2],
+    #     [0, 1, 1, 2, 3, 3, 4, 5, 5, 6],
+    #     list("abccd"),
+    #     list("005BCDDEEFI")
+    # )
 
-    for case in test_cases:
-        lst = CircularList(case)
-        print('INPUT :', lst)
-        lst.remove_duplicates()
-        print('OUTPUT:', lst)
+    # for case in test_cases:
+    #     lst = CircularList(case)
+    #     print('INPUT :', lst)
+    #     lst.remove_duplicates()
+    #     print('OUTPUT:', lst)
 
     # print('\n# odd_even example 1')
     # test_cases = (
