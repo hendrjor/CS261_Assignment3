@@ -263,7 +263,7 @@ class CircularList:
         """Sorts an CLL in ascending order by changing node pointers"""
         # Current will point to head
         current = self.sentinel.next
-        if self.sentinel.next.value is None:
+        if self.length() <= 1:
             return
         while True:
             # Index will point to node next to current
@@ -307,8 +307,8 @@ class CircularList:
                     current = next_curr
                     next_curr = temp
 
-                if not switch:
-                    next_curr = next_curr.next
+                # if not switch:
+                next_curr = next_curr.next
                 nearby = False
             current = current.next
             if current.next == self.sentinel:
@@ -450,7 +450,7 @@ class CircularList:
                 return
 
 
-# if __name__ == '__main__':
+if __name__ == '__main__':
     # print('\n# add_front example 1')
     # lst = CircularList()
     # print(lst)
@@ -605,17 +605,17 @@ class CircularList:
     # lst.reverse()
     # print(lst)
 
-    # print('\n# sort example 1')
-    # test_cases = (
-    #     [1, 10, 2, 20, 3, 30, 4, 40, 5],
-    #     ['zebra2', 'apple', 'tomato', 'apple', 'zebra1'],
-    #     [(1, 1), (20, 1), (1, 20), (2, 20)]
-    # )
-    # for case in test_cases:
-    #     lst = CircularList(case)
-    #     print(lst)
-    #     lst.sort()
-    #     print(lst)
+    print('\n# sort example 1')
+    test_cases = (
+        [1, 10, 2, 20, 3, 30, 4, 40, 5],
+        ['zebra2', 'apple', 'tomato', 'apple', 'zebra1'],
+        [(1, 1), (20, 1), (1, 20), (2, 20)]
+    )
+    for case in test_cases:
+        lst = CircularList(case)
+        print(lst)
+        lst.sort()
+        print(lst)
 
     # print('\n# rotate example 1')
     # source = [_ for _ in range(-20, 20, 7)]
