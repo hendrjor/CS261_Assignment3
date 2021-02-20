@@ -1,6 +1,6 @@
 # Course: CS261 - Data Structures
 # Student Name: Jordan Hendricks
-# Assignment: Assignment 2
+# Assignment: Assignment 3
 # Description: Contains circularly linked list class and methods for the data structure
 # Last revised: 2/19/21
 
@@ -271,16 +271,12 @@ class CircularList:
             nearby = True
             while next_curr != self.sentinel:
                 # If current node is greater than index data, swaps the data
-                switch = False
 
-                # print(nearby)
                 if current.value > next_curr.value:
-                    switch = True
-
                     after = next_curr.next
                     before = current.prev
-                    if nearby:
 
+                    if nearby:
                         before.next = next_curr
                         next_curr.prev = before
                         next_curr.next = current
@@ -307,12 +303,10 @@ class CircularList:
                     current = next_curr
                     next_curr = temp
 
-                # if not switch:
                 next_curr = next_curr.next
                 nearby = False
             current = current.next
             if current.next == self.sentinel:
-                # print("yes")
                 break
 
     def rotate(self, steps: int) -> None:
@@ -450,7 +444,7 @@ class CircularList:
                 return
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
     # print('\n# add_front example 1')
     # lst = CircularList()
     # print(lst)
@@ -605,17 +599,17 @@ if __name__ == '__main__':
     # lst.reverse()
     # print(lst)
 
-    print('\n# sort example 1')
-    test_cases = (
-        [1, 10, 2, 20, 3, 30, 4, 40, 5],
-        ['zebra2', 'apple', 'tomato', 'apple', 'zebra1'],
-        [(1, 1), (20, 1), (1, 20), (2, 20)]
-    )
-    for case in test_cases:
-        lst = CircularList(case)
-        print(lst)
-        lst.sort()
-        print(lst)
+    # print('\n# sort example 1')
+    # test_cases = (
+    #     [1, 10, 2, 20, 3, 30, 4, 40, 5],
+    #     ['zebra2', 'apple', 'tomato', 'apple', 'zebra1'],
+    #     [(1, 1), (20, 1), (1, 20), (2, 20)]
+    # )
+    # for case in test_cases:
+    #     lst = CircularList(case)
+    #     print(lst)
+    #     lst.sort()
+    #     print(lst)
 
     # print('\n# rotate example 1')
     # source = [_ for _ in range(-20, 20, 7)]

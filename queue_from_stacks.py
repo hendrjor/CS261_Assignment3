@@ -1,7 +1,7 @@
 # Course: CS261 - Data Structures
-# Student Name:
-# Assignment:
-# Description:
+# Student Name: Jordan Hendricks
+# Assignment: Assignment 3
+# Description: Implementation of Stack ADT using Linked List
 
 
 from max_stack_sll import *
@@ -71,26 +71,26 @@ class Queue:
         # return self.s1.pop()
 
 # BASIC TESTING
-if __name__ == "__main__":
-    pass
-
-    print('\n# enqueue example 1')
-    q = Queue()
-    print(q)
-    for value in [1, 2, 3, 4, 5]:
-        q.enqueue(value)
-    print(q)
-
-    print('\n# dequeue example 1')
-    q = Queue()
-    for value in [1, 2, 3, 4, 5]:
-        q.enqueue(value)
-    print(q)
-    for i in range(6):
-        try:
-            print(q.dequeue(), q)
-        except Exception as e:
-            print("No elements in queue", type(e))
-
+# if __name__ == "__main__":
+#     pass
+#
+#     print('\n# enqueue example 1')
+#     q = Queue()
+#     print(q)
+#     for value in [1, 2, 3, 4, 5]:
+#         q.enqueue(value)
+#     print(q)
+#
+#     print('\n# dequeue example 1')
+#     q = Queue()
+#     for value in [1, 2, 3, 4, 5]:
+#         q.enqueue(value)
+#     print(q)
+#     for i in range(6):
+#         try:
+#             print(q.dequeue(), q)
+#         except Exception as e:
+#             print("No elements in queue", type(e))
+#
 
 
