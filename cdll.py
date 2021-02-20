@@ -372,11 +372,14 @@ class CircularList:
             current = current.prev
 
         total = sum_nodes + num
-        total_digits = 0  # number of total nodes in final list
-        total_div = total
-        while total_div > 1:  # determine number of total nodes in final list
-            total_div /= 10
-            total_digits += 1
+        # total_digits = 0  # number of total nodes in final list
+        # total_div = total
+        # while total_div > 1:  # determine number of total nodes in final list
+        #     total_div /= 10
+        #     total_digits += 1
+
+        total_str = str(total)
+        total_digits = len(total_str)
 
         new_nodes = total_digits - initial_digits
 
