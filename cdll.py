@@ -374,15 +374,9 @@ class CircularList:
         total = sum_nodes + num
         total_digits = 0  # number of total nodes in final list
         total_div = total
-        # print(total_div)
-        # div_by = 10
         while total_div > 1:  # determine number of total nodes in final list
             total_div /= 10
             total_digits += 1
-            # print(total_div)
-
-        # print(total_digits)
-        # print(initial_digits)
 
         new_nodes = total_digits - initial_digits
 
@@ -390,7 +384,6 @@ class CircularList:
         current = self.sentinel
         for z in range(0, initial_digits):
             current = current.next
-        # print(new_nodes)
         for i in range(new_nodes):
             node = DLNode(None)
             current.next = node
@@ -400,25 +393,31 @@ class CircularList:
         self.sentinel.prev = current
 
         total_temp = total
-        power = 0
-        mod_mult = 1
+        # power = 0
+        # mod_mult = 1
         current = self.sentinel.prev
-        while total_temp != 0:
-            for x in range(0, 10):
+        # print(total_temp)
+        while total_temp >= 1:
 
-                if (total_temp - (x * (10 ** power))) % (10 * mod_mult) == 0:
-                    total_temp -= x * (10 ** power)
-                    digit = x
-                    mod_mult *= 10
-                    current.value = digit
-                    current = current.prev
-                    if current == self.sentinel:
-                        return
+            digit = total_temp % 10
+            total_temp /= 10
+            total_temp = int(total_temp)
+            current.value = digit
+            current = current.prev
+            if current == self.sentinel:
+                return
+            # for x in range(0, 10):
+            #
+            #     if (total_temp - (x * (10 ** power))) % (10 * mod_mult) == 0:
+            #         total_temp -= x * (10 ** power)
+            #         digit = x
+            #         mod_mult *= 10
+            #         current.value = digit
+            #         current = current.prev
+            #         if current == self.sentinel:
+            #             return
 
-            power += 1
-
-
-
+            # power += 1
 
 
 if __name__ == '__main__':
@@ -653,4 +652,5 @@ if __name__ == '__main__':
        print('OUTPUT:', lst)
 
 
-
+# print(133.3 %10)
+# print(int(0.9))
