@@ -134,7 +134,6 @@ class CircularList:
         node.prev = current
         current.next = node
 
-
     def remove_front(self) -> None:
         """Removes the first node of the list"""
         if self.length() == 0:
@@ -143,7 +142,6 @@ class CircularList:
         second = first.next
         self.sentinel.next = second
         second.prev = self.sentinel
-
 
     def remove_back(self) -> None:
         """Removes the last node from the list"""
@@ -188,7 +186,6 @@ class CircularList:
                 return True
             current = current.next
         return False
-
 
     def count(self, value: object) -> int:
         """Counts the number of elements in the list matching the provided value"""
@@ -249,7 +246,6 @@ class CircularList:
         node1.next = node2_next
         node2_next.prev = node1
 
-
     def reverse(self) -> None:
         """Reverses the order of nodes in the list"""
 
@@ -264,8 +260,60 @@ class CircularList:
             last = temp
 
     def sort(self) -> None:
-        """"""
-        pass
+        """Sorts an CLL in ascending order by changing node pointers"""
+        # Current will point to head
+        current = self.sentinel.next
+        if self.sentinel.next.value is None:
+            return
+        while True:
+            # Index will point to node next to current
+            next_curr = current.next
+            nearby = True
+            while next_curr != self.sentinel:
+                # If current node is greater than index data, swaps the data
+                switch = False
+
+                # print(nearby)
+                if current.value > next_curr.value:
+                    switch = True
+
+                    after = next_curr.next
+                    before = current.prev
+                    if nearby:
+
+                        before.next = next_curr
+                        next_curr.prev = before
+                        next_curr.next = current
+
+                        current.prev = next_curr
+                        current.next = after
+                        after.prev = current
+                    else:
+                        before_next = current.next
+                        after_prev = next_curr.prev
+
+                        before.next = next_curr
+                        next_curr.prev = before
+                        next_curr.next = before_next
+                        before_next.prev = next_curr
+
+                        after_prev.next = current
+                        current.prev = after_prev
+                        current.next = after
+                        after.prev = current
+
+                    temp = current
+
+                    current = next_curr
+                    next_curr = temp
+
+                if not switch:
+                    next_curr = next_curr.next
+                nearby = False
+            current = current.next
+            if current.next == self.sentinel:
+                # print("yes")
+                break
 
     def rotate(self, steps: int) -> None:
         """Rotates each node in the list a certain number of spaces"""
@@ -372,12 +420,6 @@ class CircularList:
             current = current.prev
 
         total = sum_nodes + num
-        # total_digits = 0  # number of total nodes in final list
-        # total_div = total
-        # while total_div > 1:  # determine number of total nodes in final list
-        #     total_div /= 10
-        #     total_digits += 1
-
         total_str = str(total)
         total_digits = len(total_str)
 
@@ -396,10 +438,7 @@ class CircularList:
         self.sentinel.prev = current
 
         total_temp = total
-        # power = 0
-        # mod_mult = 1
         current = self.sentinel.prev
-        # print(total_temp)
         while total_temp >= 1:
 
             digit = total_temp % 10
@@ -409,22 +448,9 @@ class CircularList:
             current = current.prev
             if current == self.sentinel:
                 return
-            # for x in range(0, 10):
-            #
-            #     if (total_temp - (x * (10 ** power))) % (10 * mod_mult) == 0:
-            #         total_temp -= x * (10 ** power)
-            #         digit = x
-            #         mod_mult *= 10
-            #         current.value = digit
-            #         current = current.prev
-            #         if current == self.sentinel:
-            #             return
-
-            # power += 1
 
 
-if __name__ == '__main__':
-
+# if __name__ == '__main__':
     # print('\n# add_front example 1')
     # lst = CircularList()
     # print(lst)
@@ -557,7 +583,6 @@ if __name__ == '__main__':
 
     # print('\n# reverse example 3')
 
-
     # class Student:
     #     def __init__(self, name, age):
     #         self.name, self.age = name, age
@@ -567,7 +592,6 @@ if __name__ == '__main__':
     #
     #     def __str__(self):
     #         return str(self.name) + ' ' + str(self.age)
-
 
     # s1, s2 = Student('John', 20), Student('Andy', 20)
     # lst = CircularList([s1, s2])
@@ -641,19 +665,15 @@ if __name__ == '__main__':
     #     lst.odd_even()
     #     print('OUTPUT:', lst)
 
-    print('\n# add_integer example 1')
-    test_cases = (
-      ([1, 2, 3], 10456),
-      ([], 25),
-      ([2, 0, 9, 0, 7], 108),
-       ([9, 9, 9], 9_999_999),
-    )
-    for list_content, integer in test_cases:
-       lst = CircularList(list_content)
-       print('INPUT :', lst, 'INTEGER', integer)
-       lst.add_integer(integer)
-       print('OUTPUT:', lst)
-
-
-# print(133.3 %10)
-# print(int(0.9))
+    # print('\n# add_integer example 1')
+    # test_cases = (
+    #   ([1, 2, 3], 10456),
+    #   ([], 25),
+    #   ([2, 0, 9, 0, 7], 108),
+    #    ([9, 9, 9], 9_999_999),
+    # )
+    # for list_content, integer in test_cases:
+    #    lst = CircularList(list_content)
+    #    print('INPUT :', lst, 'INTEGER', integer)
+    #    lst.add_integer(integer)
+    #    print('OUTPUT:', lst)
