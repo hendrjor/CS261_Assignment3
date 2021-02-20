@@ -1,8 +1,8 @@
 # Course: CS261 - Data Structures
-# Student Name:
-# Assignment:
-# Description:
-
+# Student Name: Jordan Hendricks
+# Assignment: Assignment 2
+# Description: Contains circularly linked list class and methods for the data structure
+# Last revised: 2/19/21
 
 class CDLLException(Exception):
     """
